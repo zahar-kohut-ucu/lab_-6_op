@@ -24,9 +24,10 @@ def get_words(f: str, letters: List[str]) -> List[str]:
     """
     Reads the file f. Checks the words with rules and returns a list of words.
     """
-    right_words = []
+    t_letters = list(set([(_g, letters.count(_g)) for _g in letters]))
     with open(f, 'r', encoding='utf-8') as en:
         content = en.readlines()
+    return t_letters
 
 
 
@@ -39,11 +40,11 @@ def get_user_words() -> List[str]:
     """
     user_words = []
     while True:
-        user_words.append(input())
+        try:
+            user_words.append(input())
+        except EOFError:
+            break
     return user_words
-    
-print(get_user_words())
-
 
 
 def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
