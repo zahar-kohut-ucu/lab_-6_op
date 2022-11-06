@@ -14,4 +14,23 @@ def generate_grid():
             board.append(letter)
     return board
 
-print(generate_grid())
+def get_user_words() -> List[str]:
+    """
+    Gets words from user input and returns a list with these words.
+    Usage: enter a word or press ctrl+d to finish for *nix or Ctrl-Z+Enter
+    for Windows.
+    Note: the user presses the enter key after entering each word.
+    """
+    user_words = []
+    while True:
+        try:
+            user_words.append(input())
+        except EOFError:
+            break
+    return user_words
+
+def get_words(_f, letters):
+    '''
+    Return list of tuples (pairs - (word, part_of_speech)) with length less than 6
+    and starting with a letter from 'letters' list.
+    '''
