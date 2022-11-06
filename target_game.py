@@ -30,12 +30,12 @@ def get_words(f: str, letters: List[str]) -> List[str]:
         for word in content:
             if  len(word.strip())>3 and letters[4] in word:
                 word = word.strip().lower()
-                t_word = list(set([(_h, word.count(_h)) for _h in word]))
-                if all(_u[0] in letters and _u[1] <= letters.count(_u[0]) for _u in t_word):
+                if all(_u in letters and word.count(_u) <= letters.count(_u) for _u in word):
                     right_words.append(word)
     return right_words
 
-print(get_words('en.txt', ['s', 'g', 'i', 'v', 'r', 'v', 'o', 'n', 'q']))
+print(get_words('en.txt', list('sgivrvonq')))
+
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
@@ -59,8 +59,18 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     Checks user words with the rules and returns list of those words
     that are not in dictionary.
     """
-    pass
+    pure_words = []
+    for word in user_words:
+        if not word in words_from_dict:
+            if  len(word.strip())>3 and letters[4] in word:
+                word = word.strip().lower()
+                if all(_u in letters and word.count(_u) <= letters.count(_u) for _u in word):
+                    pure_words.append(word)
+    return pure_words
+
+
+
 
 
 def results():
-    pass
+
