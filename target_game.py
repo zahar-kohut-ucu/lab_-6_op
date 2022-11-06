@@ -23,14 +23,14 @@ def generate_grid() -> List[List[str]]:
 
 def get_words(_f: str, letters: List[str]) -> List[str]:
     """
-    Reads the file f. Checks the words with rules and returns a list of words.
+    Reads the file _f. Checks the words with rules and returns a list of words.
     """
     right_words = []
     with open(_f, 'r', encoding='utf-8') as _en:
         content = _en.readlines()[6:]
         for word in content:
+            word = word.strip().lower()
             if  len(word.strip())>3 and letters[4] in word:
-                word = word.strip().lower()
                 if all(_u in letters and word.count(_u) <= letters.count(_u) for _u in word):
                     right_words.append(word)
     return right_words
