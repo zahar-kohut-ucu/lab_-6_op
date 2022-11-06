@@ -82,7 +82,9 @@ letters: List[str], dict_of_words: List[str]) -> List[str]:
             right_words.append(item[0])
     right_user_words = [el1 for el1 in user_words if el1 in right_words]
     missed_words = [el2 for el2 in right_words if el2 not in user_words]
-    return (right_user_words, missed_words)
+    return [right_user_words, missed_words]
+
+print(check_user_words(['бабин', 'битий', 'бичий', 'білий', 'бісів', 'богів', 'божий', 'босий', 'булий', 'булів', 'бурий', 'ласий', 'лисий', 'литий', 'лихий', 'лівий', 'любий', 'лютий', 'усний', 'утлий', 'щирий', 'щучий', 'щучин'], "adjective", ['ф', 'у', 'щ', 'б', 'л'], get_words("base.lst", ['ф', 'у', 'щ', 'б', 'л'])))
 
 if __name__ == "__main__":
     import doctest
