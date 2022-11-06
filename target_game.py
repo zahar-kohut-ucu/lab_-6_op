@@ -34,8 +34,6 @@ def get_words(f: str, letters: List[str]) -> List[str]:
                     right_words.append(word)
     return right_words
 
-print(get_words('en.txt', list('sgivrvonq')))
-
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
@@ -69,8 +67,37 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     return pure_words
 
 
+def results(user_ans, letters):
+    '''
+    Prints and write into files results of game.
+    '''
+    all_words = get_words('en.txt', letters)
+    pure_words = get_pure_user_words(user_ans, letters, all_words)
+    missed_words = []
+    for word1 in all_words:
+        if not word1 in user_ans:
+            missed_words.append(word1)
+    right_ans = 0
+    for word2 in user_ans:
+        if word2 in all_words:
+            right_ans += 1
+    result = [str(right_ans), ', '.join(all_words), ', '.join(missed_words), ', '.join(pure_words)]
+    print(result)
+    with open('result.txt', 'r', encoding='utf-8'):
+        pass
+допо
+def grid_into_letters(grid):
+    '''
+    Transfrom grid into 'letters' argument.
+    '''
+    for _i, item in enumerate(grid):
+        grid[_i] = ''.join(item)
+    grid = list(''.join(grid).lower())
+    return grid
 
 
 
-def results():
+
+
+
 
