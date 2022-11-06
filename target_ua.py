@@ -7,7 +7,7 @@ def generate_grid() -> List[str]:
     Generates list of letters - i.e. grid for the game.
     e.g. ['e', 'п', 'в', 'o', 'є']
     '''
-    ukr_alph = list('абвгґдеєжзиіїйклмнопрстуфхцчшщюя')
+    ukr_alph = list('абвгґдеєжзиіїйклмнопрстуфхцчшщьюя')
     board = []
     while len(board) < 5:
         letter = random.choice(ukr_alph)
@@ -34,9 +34,29 @@ def get_words(_f: str, letters: List[str]) -> List[tuple[str]]:
     '''
     Return list of tuples (pairs - (word, part_of_speech)) with length less than 6
     and starting with a letter from 'letters' list.
+    >>> get_words("base.lst", ['й', 'є', 'ю'])
+    [('євнух', 'noun'), ('єврей', 'noun'), ('євро', 'noun'), ('єгер', 'noun'), \
+('єдваб', 'noun'), ('єзуїт', 'noun'), ('єлей', 'noun'), ('ємний', 'adjective'), \
+('ємно', 'adverb'), ('єна', 'noun'), ('єнот', 'noun'), ('єпарх', 'noun'), \
+('єресь', 'noun'), ('єри', 'noun'), ('єрик', 'noun'), ('єрик', 'noun'), \
+('єство', 'noun'), ('єті', 'noun'), ('єхида', 'noun'), ('йняти', 'verb'), \
+('йог', 'noun'), ('йога', 'noun'), ('йод', 'noun'), ('йодат', 'noun'), \
+('йодид', 'noun'), ('йодил', 'noun'), ('йодит', 'noun'), ('йодль', 'noun'), \
+('йола', 'noun'), ('йолоп', 'noun'), ('йомен', 'noun'), ('йон', 'noun'), \
+('йорж', 'noun'), ('йорж', 'noun'), ('йот', 'noun'), ('йота', 'noun'), \
+('йти', 'verb'), ('йтися', 'verb'), ('юань', 'noun'), ('юга', 'noun'), \
+('югурт', 'noun'), ('юда', 'noun'), ('юдей', 'noun'), ('юдин', 'adjective'), \
+('юдоль', 'noun'), ('юзом', 'adverb'), ('юїтка', 'noun'), ('юка', 'noun'), \
+('юкола', 'noun'), ('юнак', 'noun'), ('юнга', 'noun'), ('юний', 'adjective'), \
+('юніор', 'noun'), ('юнка', 'noun'), ('юнкер', 'noun'), ('юнкор', 'noun'), ('юннат', 'noun'), \
+('юнь', 'noun'), ('юпка', 'noun'), ('юра', 'noun'), ('юрба', 'noun'), \
+('юрик', 'noun'), ('юрист', 'noun'), ('юрма', 'noun'), ('юрода', 'noun'), \
+('юрок', 'noun'), ('юрок', 'noun'), ('юрта', 'noun'), ('юрфак', 'noun'), \
+('юс', 'noun'), ('ют', 'noun'), ('ютуб', 'noun'), ('юферс', 'noun'), \
+('юхта', 'noun'), ('юшити', 'verb'), ('юшка', 'noun'), ('ююба', 'noun')]
     '''
-    parts_of_speech_dict = {'/n': 'noun', 'noun': 'noun', '/numr': None, 'adv': 'adverb', 'adj': 'adjective', \
-    '/adj': 'adjective','/v': 'verb', 'verb': 'verb', 'advp': 'verb'}
+    parts_of_speech_dict = {'/n': 'noun', 'noun': 'noun', '/numr': None, 'adv': 'adverb', \
+    'adj': 'adjective', '/adj': 'adjective','/v': 'verb', 'verb': 'verb', 'advp': 'verb'}
     words = []
     with open(_f, 'r', encoding='utf-8') as base:
         content = base.read().split('\n')
@@ -51,7 +71,6 @@ def get_words(_f: str, letters: List[str]) -> List[tuple[str]]:
                     words.append((word[:word.find(' ')], part))
     return words
 
-
 def check_user_words(user_words: List[str], language_part: str, \
 letters: List[str], dict_of_words: List[str]) -> List[str]:
     '''
@@ -64,3 +83,7 @@ letters: List[str], dict_of_words: List[str]) -> List[str]:
     right_user_words = [el1 for el1 in user_words if el1 in right_words]
     missed_words = [el2 for el2 in right_words if el2 not in user_words]
     return (right_user_words, missed_words)
+
+if __name__ == "__main__":
+    import doctest
+    print(doctest.testmod())
