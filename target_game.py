@@ -24,12 +24,19 @@ def get_words(f: str, letters: List[str]) -> List[str]:
     """
     Reads the file f. Checks the words with rules and returns a list of words.
     """
-    t_letters = list(set([(_g, letters.count(_g)) for _g in letters]))
+    right_words = []
     with open(f, 'r', encoding='utf-8') as en:
-        content = en.readlines()
-    return t_letters
+        content = en.readlines()[6:]
+        for word in content:
+            if  len(word.strip())>3 and letters[4] in word:
+                word = word.strip().lower()
+                t_word = list(set([(_h, word.count(_h)) for _h in word]))
+                for _u in t_word:
+                    if _u[0] in letters and _u[1] <= letters.count(_u[0]):
+                        right_words.append(word)
+    return right_words
 
-
+print(get_words('en.txt',  ['e', 'm', 'x', 'p', 'c', 'z', 'w', 'p', 'i']))
 
 def get_user_words() -> List[str]:
     """
