@@ -31,13 +31,11 @@ def get_words(f: str, letters: List[str]) -> List[str]:
             if  len(word.strip())>3 and letters[4] in word:
                 word = word.strip().lower()
                 t_word = list(set([(_h, word.count(_h)) for _h in word]))
-                for _u in t_word:
-                    if _u[0] in letters and _u[1] <= letters.count(_u[0]):
-                        right_words.append(word)
+                if all(_u[0] in letters and _u[1] <= letters.count(_u[0]) for _u in t_word):
+                    right_words.append(word)
     return right_words
 
-print(get_words('en.txt',  ['e', 'm', 'x', 'p', 'c', 'z', 'w', 'p', 'i']))
-
+print(get_words('en.txt', ['s', 'g', 'i', 'v', 'r', 'v', 'o', 'n', 'q']))
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
