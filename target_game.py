@@ -1,3 +1,4 @@
+'''Target game (English)'''
 from typing import List
 import random
 import string
@@ -20,13 +21,13 @@ def generate_grid() -> List[List[str]]:
 
 
 
-def get_words(f: str, letters: List[str]) -> List[str]:
+def get_words(_f: str, letters: List[str]) -> List[str]:
     """
     Reads the file f. Checks the words with rules and returns a list of words.
     """
     right_words = []
-    with open(f, 'r', encoding='utf-8') as en:
-        content = en.readlines()[6:]
+    with open(_f, 'r', encoding='utf-8') as _en:
+        content = _en.readlines()[6:]
         for word in content:
             if  len(word.strip())>3 and letters[4] in word:
                 word = word.strip().lower()
@@ -50,7 +51,8 @@ def get_user_words() -> List[str]:
     return user_words
 
 
-def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
+def get_pure_user_words(user_words: List[str], letters: List[str]\
+    , words_from_dict: List[str]) -> List[str]:
     """
     (list, list, list) -> list
 
@@ -82,10 +84,12 @@ def results(user_ans, letters):
         if word2 in all_words:
             right_ans += 1
     result = [str(right_ans), ', '.join(all_words), ', '.join(missed_words), ', '.join(pure_words)]
-    print(result)
-    with open('result.txt', 'r', encoding='utf-8'):
-        pass
-допо
+    print('\n'.join(result))
+    with open('result.txt', 'w', encoding='utf-8') as res:
+        res.write('\n'.join(result))
+
+
+
 def grid_into_letters(grid):
     '''
     Transfrom grid into 'letters' argument.
@@ -94,10 +98,3 @@ def grid_into_letters(grid):
         grid[_i] = ''.join(item)
     grid = list(''.join(grid).lower())
     return grid
-
-
-
-
-
-
-
