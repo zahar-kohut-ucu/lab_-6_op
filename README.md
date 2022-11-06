@@ -1,2 +1,2 @@
 # lab_-6_op
-Lab #6 OP
+Target_en and target_ukr
