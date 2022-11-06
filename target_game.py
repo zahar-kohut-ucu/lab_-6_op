@@ -15,7 +15,7 @@ def generate_grid() -> List[List[str]]:
     for _b in range(3):
         line = []
         for _d in range(3):
-            line.append(alph_up[random.randrange(26)])
+            line.append(random.choice(alph_up))
         board.append(line)
     return board
 
