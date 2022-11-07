@@ -7,7 +7,7 @@ def generate_grid() -> List[str]:
     Generates list of letters - i.e. grid for the game.
     e.g. ['e', 'п', 'в', 'o', 'є']
     '''
-    ukr_alph = list('абвгґдеєжзиіїйклмнопрстуфхцчшщьюя')
+    ukr_alph = set('абвгґдеєжзиіїйклмнопрстуфхцчшщьюя')
     board = []
     while len(board) < 5:
         letter = random.choice(ukr_alph)
@@ -84,7 +84,7 @@ letters: List[str], dict_of_words: List[str]) -> List[str]:
     missed_words = [el2 for el2 in right_words if el2 not in user_words]
     return [right_user_words, missed_words]
 
-print(check_user_words(['бабин', 'битий', 'бичий', 'білий', 'бісів', 'богів', 'божий', 'босий', 'булий', 'булів', 'бурий', 'ласий', 'лисий', 'литий', 'лихий', 'лівий', 'любий', 'лютий', 'усний', 'утлий', 'щирий', 'щучий', 'щучин'], "adjective", ['ф', 'у', 'щ', 'б', 'л'], get_words("base.lst", ['ф', 'у', 'щ', 'б', 'л'])))
+#print(check_user_words(['бабин', 'битий', 'бичий', 'білий', 'бісів', 'богів', 'божий', 'босий', 'булий', 'булів', 'бурий', 'ласий', 'лисий', 'литий', 'лихий', 'лівий', 'любий', 'лютий', 'усний', 'утлий', 'щирий', 'щучий', 'щучин'], "adjective", ['ф', 'у', 'щ', 'б', 'л'], get_words("base.lst", ['ф', 'у', 'щ', 'б', 'л'])))
 
 if __name__ == "__main__":
     import doctest
